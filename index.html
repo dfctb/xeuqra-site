@@ -38,10 +38,14 @@
       </tr>
     </thead>
     <tbody id="releases-table-body">
-      <!-- Сюда JS загрузит релизы из JSON -->
+      <!-- Индикатор загрузки внутри таблицы -->
+      <tr id="loading-row">
+        <td colspan="4" style="text-align: center; padding: 20px; color: #888;">loading catalog from discogs API...</td>
+      </tr>
     </tbody>
   </table>
 </section>
+
 
 <!-- СЕКЦИЯ ARTISTS -->
 <section id="artists">
@@ -79,5 +83,6 @@
 <script src="js/footer-year.js"></script>
 <script src="js/scrollspy.js" defer></script>
 <script src="js/main-loader.js" defer></script>
+<script src="script.js"></script>
 </body>
 </html>
