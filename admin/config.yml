@@ -1,11 +1,8 @@
 backend:
   name: github
-  # replace with your actual GitHub username/repo, e.g. egor123/xeuqra-site
   repo: dfctb/xeuqra-site
   branch: main
-  # replace with the URL of your deployed auth worker (step below), e.g.
-  # https://sveltia-cms-auth.your-subdomain.workers.dev
-  base_url: https://sveltia-cms-auth.motorlalsamo.workers.dev
+  base_url: https://sveltia-cms-auth.motorlalsamo.workers.dev/
 
 media_folder: "assets/pictures/uploads"
 public_folder: "/assets/pictures/uploads"
@@ -27,3 +24,51 @@ collections:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Link (optional)", name: "url", widget: "string", required: false}
               - {label: "Text", name: "text", widget: "text", required: false}
+
+  - name: "catalog"
+    label: "Catalog & Roster"
+    files:
+      # Релизы (Таблица)
+      - file: "data/releases.json"
+        label: "Releases (Catalog)"
+        name: "releases"
+        fields:
+          - label: "Releases List"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.cat}} — {{fields.artist}} - {{fields.title}}"
+            fields:
+              - {label: "Catalog No (Cat)", name: "cat", widget: "string"}
+              - {label: "Artist", name: "artist", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Year", name: "year", widget: "string"}
+
+      # Артисты
+      - file: "data/artists.json"
+        label: "Artists (Roster)"
+        name: "artists"
+        fields:
+          - label: "Artists List"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Name / Project", name: "name", widget: "string"}
+              - {label: "Real Name (Optional)", name: "realName", widget: "string", required: false}
+              - {label: "Biography / Note", name: "bio", widget: "text"}
+              - {label: "Aliases / Also releases as", name: "aliases", widget: "string", required: false}
+
+      # Информация о Лейбле и Контакты
+      - file: "data/label.json"
+        label: "Label Info & Contacts"
+        name: "label_info"
+        fields:
+          - {label: "About Text", name: "description", widget: "text"}
+          - {label: "Founded Year", name: "founded", widget: "string"}
+          - {label: "Founders", name: "founders", widget: "string"}
+          - {label: "Sub-label", name: "sublabel", widget: "string"}
+          - {label: "Roster status", name: "roster", widget: "string"}
+          - {label: "Bandcamp URL", name: "bandcamp", widget: "string", required: false}
+          - {label: "Soundcloud URL", name: "soundcloud", widget: "string", required: false}
+          - {label: "Discogs URL", name: "discogs", widget: "string", required: false}
+          - {label: "Email", name: "email", widget: "string", required: false}

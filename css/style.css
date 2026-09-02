@@ -209,3 +209,7 @@ footer{
   td.cat::before{content:"cat / "; color:var(--dim);}
   td.year::before{content:"year / "; color:var(--dim);}
 }
+
+body {
+  padding-bottom: 25vh;
+}
