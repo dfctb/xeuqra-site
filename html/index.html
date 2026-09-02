@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xeuqra Records</title>
+<style>
+  :root{
+    --bg: #ffffff;
+    --fg: #000000;
+    --dim: #3a3a3a;
+    --line:#2a2a28;
+    --mono: "IBM Plex Mono", "Courier New", monospace;
+    --sans: "Helvetica Neue", Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    font-size:14px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--fg); text-decoration:none;}
+  a:hover{color:#fff; text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:1px solid var(--fg); outline-offset:2px;}
+
+  /* ---- top bar ---- */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar{
+    display:flex; flex-wrap:wrap; align-items:baseline;
+    justify-content:space-between;
+    padding:14px 20px;
+    gap:10px 24px;
+  }
+  .wordmark{
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:0.02em;
+  }
+  .wordmark span{color:var(--dim);}
+  nav{
+    display:flex; flex-wrap:wrap; gap:18px;
+    font-family:var(--mono);
+    font-size:13px;
+  }
+  nav a{color:var(--dim);}
+  nav a:hover{color:var(--fg); text-decoration:none;}
+  nav a.active{color:var(--fg);}
+
+  main{max-width:980px; margin:0 auto; padding:0 20px;}
+
+  section{
+    padding:56px 0 24px;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  h1{
+    font-family:var(--mono);
+    font-weight:400;
+    font-size:15px;
+    color:var(--dim);
+    margin-bottom:22px;
+  }
+  h1 b{color:var(--fg); font-weight:400;}
+
+  /* ---- intro ---- */
+  .intro p{
+    max-width:640px;
+    font-size:15px;
+    color:var(--fg);
+    margin-bottom:14px;
+  }
+  .intro p:last-child{margin-bottom:0;}
+  .intro .dim{color:var(--dim);}
+
+  /* ---- data table ---- */
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:var(--mono);
+    font-size:12.5px;
+  }
+  th{
+    text-align:left;
+    font-weight:400;
+    color:var(--dim);
+    padding:0 12px 8px 0;
+    border-bottom:1px solid var(--line);
+  }
+  td{
+    padding:9px 12px 9px 0;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+    color:var(--fg);
+  }
+  tr:last-child td{border-bottom:none;}
+  td.cat{color:var(--dim); white-space:nowrap;}
+  td.year{color:var(--dim); white-space:nowrap;}
+  td.title a{color:var(--fg);}
+  td.artist{white-space:nowrap;}
+  .tag{
+    color:var(--dim);
+    font-size:11px;
+  }
+
+  /* ---- artist list ---- */
+  .artists{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .artist-row{
+    display:grid;
+    grid-template-columns:160px 1fr;
+    gap:20px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .artist-row:last-child{border-bottom:none;}
+  .artist-name{
+    font-family:var(--mono);
+    font-size:14px;
+  }
+  .artist-real{color:var(--dim); font-size:12px;}
+  .artist-note{color:var(--dim); font-size:13px; max-width:560px;}
+  .artist-aliases{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--dim);
+    margin-top:6px;
+  }
+  .artist-aliases a{color:var(--dim);}
+  .artist-aliases a:hover{color:var(--fg);}
+
+  /* ---- label info ---- */
+  .kv{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:6px 20px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    max-width:640px;
+  }
+  .kv dt{color:var(--dim);}
+  .kv dd{color:var(--fg);}
+  .kv-row{display:contents;}
+
+  .prose{max-width:640px; font-size:14px; color:var(--fg);}
+  .prose p{margin-bottom:14px;}
+  .prose p:last-child{margin-bottom:0;}
+
+  /* ---- links list ---- */
+  .links{font-family:var(--mono); font-size:13px;}
+  .links li{list-style:none; padding:8px 0; border-bottom:1px solid var(--line);}
+  .links li:last-child{border-bottom:none;}
+  .links a{color:var(--fg);}
+  .links .platform{color:var(--dim); display:inline-block; width:110px;}
+
+  footer{
+    padding:30px 20px 60px;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--dim);
+    max-width:980px;
+    margin:0 auto;
+  }
+
+  @media (max-width:640px){
+    .artist-row{grid-template-columns:1fr;}
+    .kv{grid-template-columns:1fr;}
+    table, thead, tbody, th, td, tr{display:block;}
+    thead{display:none;}
+    tr{border-bottom:1px solid var(--line); padding:10px 0;}
+    td{border-bottom:none; padding:2px 0;}
+    td.cat::before{content:"cat / "; color:var(--dim);}
+    td.year::before{content:"year / "; color:var(--dim);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="wordmark">XEUQRA <span>RECORDS</span></div>
+    <nav>
+      <a href="#releases" class="active">releases</a>
+      <a href="#artists">artists</a>
+      <a href="#label">label</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="releases">
+    <h1>releases <b>— catalog</b></h1>
+    <table>
+      <thead>
+        <tr>
+          <th>cat</th>
+          <th>artist</th>
+          <th>title</th>
+          <th>year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cat">XQ0061</td>
+          <td class="artist">Egor Gerasenko</td>
+          <td class="title"><a href="#">The Weirdest (Shities*) Album You've Ever Heard</a></td>
+          <td class="year">2026</td>
+        </tr>
+        <tr>
+          <td class="cat">XQ—</td>
+          <td class="artist">qumcl</td>
+          <td class="title"><a href="#">Demo Tape 2025–2026</a></td>
+          <td class="year">2026</td>
+        </tr>
+        <tr>
+          <td class="cat">XQ—</td>
+          <td class="artist">qumcl</td>
+          <td class="title"><a href="#">Demo Tape 2023–2024</a></td>
+          <td class="year">2025</td>
+        </tr>
+        <tr>
+          <td class="cat">XQ—</td>
+          <td class="artist">Xiroach</td>
+          <td class="title"><a href="#">—</a></td>
+          <td class="year">—</td>
+        </tr>
+        <tr>
+          <td class="cat">…</td>
+          <td class="artist tag">add remaining catalog entries here</td>
+          <td class="title tag">title / cat.no from discogs</td>
+          <td class="year">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="artists">
+    <h1>artists <b>— roster</b></h1>
+    <div class="artists">
+
+      <div class="artist-row">
+        <div>
+          <div class="artist-name">qumcl</div>
+          <div class="artist-real">Egor Gerasenko</div>
+        </div>
+        <div>
+          <div class="artist-note">Weirdcore, IDM, ambient, jungle, glitch, noise. Tape hiss, field recordings, digital decay. Co-founder of the label.</div>
+          <div class="artist-aliases">also releases as: <a href="#">Egor Gerasenko</a> / <a href="#">Madcap Laughs (qu1)</a> / <a href="#">qu12</a> / <a href="#">Qulicker</a> / <a href="#">sunymoia</a></div>
+        </div>
+      </div>
+
+      <div class="artist-row">
+        <div>
+          <div class="artist-name">Xiroach</div>
+          <div class="artist-real">—</div>
+        </div>
+        <div>
+          <div class="artist-note">Co-founder of the label. Discography and bio — add here.</div>
+        </div>
+      </div>
+
+      <div class="artist-row">
+        <div>
+          <div class="artist-name tag">—</div>
+        </div>
+        <div>
+          <div class="artist-note tag">further roster entries, if any, go here</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="label">
+    <h1>label</h1>
+    <div class="prose">
+      <p>Xeuqra Records was founded in 2024 by qumcl and Xiroach. It does not sign outside artists — everything released under the label is made by its two founders, under whichever alias fits the work.</p>
+      <p>In 2026, Q-REC was launched as a sub-label for more specific or experimental projects.</p>
+    </div>
+    <dl class="kv" style="margin-top:26px;">
+      <div class="kv-row"><dt>founded</dt><dd>2024</dd></div>
+      <div class="kv-row"><dt>founders</dt><dd>qumcl, Xiroach</dd></div>
+      <div class="kv-row"><dt>sub-label</dt><dd>Q-REC (2026–)</dd></div>
+      <div class="kv-row"><dt>roster</dt><dd>closed — founders only</dd></div>
+    </dl>
+  </section>
+
+  <section id="contact">
+    <h1>contact <b>— links</b></h1>
+    <ul class="links">
+      <li><span class="platform">bandcamp</span><a href="https://qumcl.bandcamp.com/">qumcl.bandcamp.com</a></li>
+      <li><span class="platform">soundcloud</span><a href="https://soundcloud.com/sunymoia">soundcloud.com/sunymoia</a></li>
+      <li><span class="platform">discogs</span><a href="https://www.discogs.com/label/3714837-Xeuqra">discogs.com/label/3714837-Xeuqra</a></li>
+      <li><span class="platform">email</span><a href="#">—</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  © Xeuqra Records, 2026. all rights reserved.
+</footer>
+
+</body>
+</html>
