@@ -5,8 +5,10 @@ async function loadNews() {
   try {
     const res = await fetch("../data/news.json");
     if (!res.ok) throw new Error("failed to load news.json");
-    const items = await res.json();
+    const data = await res.json();
+    const items = data.items || [];
 
+    // newest first
     items.sort((a, b) => (a.date < b.date ? 1 : -1));
 
     list.innerHTML = "";

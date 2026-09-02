@@ -1,0 +1,29 @@
+backend:
+  name: github
+  # replace with your actual GitHub username/repo, e.g. egor123/xeuqra-site
+  repo: dfctb/xeuqra-site
+  branch: main
+  # replace with the URL of your deployed auth worker (step below), e.g.
+  # https://sveltia-cms-auth.your-subdomain.workers.dev
+  base_url: https://sveltia-cms-auth.motorlalsamo.workers.dev
+
+media_folder: "assets/pictures/uploads"
+public_folder: "/assets/pictures/uploads"
+
+collections:
+  - name: "news"
+    label: "News"
+    files:
+      - file: "data/news.json"
+        label: "News feed"
+        name: "news"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - {label: "Date", name: "date", widget: "string", hint: "format YYYY.MM.DD"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Link (optional)", name: "url", widget: "string", required: false}
+              - {label: "Text", name: "text", widget: "text", required: false}
