@@ -1,10 +1,16 @@
 {
   "items": [
     {
+      "date": "2026.09.02",
+      "title": "Welcome!",
+      "url": "",
+      "text": "We builded a new minimalistic site! So, welcome!"
+    },
+    {
       "date": "2026.09.01",
       "title": "Demo Tape 2025–2026 out now",
       "url": "https://qumcl.bandcamp.com/album/demo-tape-2025-2026-2",
-      "text": "62 tracks, released on Bandcamp."
+      "text": "62 tracks, another batch of sketches and finished bits that piled up over the year. Some could've turned into something bigger, some stayed as they are.\nFree to stream/download → https://qumcl.bandcamp.com/album/demo-tape-2025-2026-2"
     }
   ]
 }
