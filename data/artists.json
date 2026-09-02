@@ -1,14 +1,10 @@
-[
-  {
-    "name": "qumcl",
-    "realName": "Egor Gerasenko",
-    "bio": "Weirdcore, IDM, ambient, jungle, glitch, noise. Tape hiss, field recordings, digital decay. Co-founder of the label.",
-    "aliases": "Egor Gerasenko / Madcap Laughs (qu1) / qu12 / Qulicker / sunymoia"
-  },
-  {
-    "name": "Xiroach",
-    "realName": "—",
-    "bio": "Co-founder of the label. Discography and bio — add here.",
-    "aliases": ""
-  }
-]
+{
+  "items": [
+    {
+      "name": "test",
+      "realName": "test",
+      "bio": "test",
+      "aliases": "test"
+    }
+  ]
+}
