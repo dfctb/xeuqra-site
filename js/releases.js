@@ -1,13 +1,24 @@
 // Загружаем данные из JSON
 async function loadCatalog() {
-    const response = await fetch('/data/matched_releases.json'); // или итоговый файл
+    const response = await fetch('/data/releases.json');
     return response.json();
 }
 
+// Сортировка по убыванию номера каталога (новые релизы сверху)
+function sortByNewest(data) {
+    return data.sort((a, b) => {
+        // Извлекаем число из cat (например, "XQ0063" → 63)
+        const numA = parseInt(a.cat.replace(/\D/g, '')) || 0;
+        const numB = parseInt(b.cat.replace(/\D/g, '')) || 0;
+        return numB - numA; // по убыванию
+    });
+}
+
 function renderTable(data) {
+    const sortedData = sortByNewest(data); // сортируем перед рендерингом
     const tbody = document.getElementById('releases-table-body');
     let html = '';
-    data.forEach(item => {
+    sortedData.forEach(item => {
         const titleContent = item.bandcamp
             ? `<a href="${item.bandcamp}" target="_blank">${item.title}</a>`
             : item.title;
