@@ -213,3 +213,35 @@ footer{
 body {
   padding-bottom: 25vh;
 }
+
+section { scroll-margin-top: 60px; }        /* чтобы шапка не закрывала заголовок */
+
+
+.wordmark-text {
+  display: inline-block;
+  margin-left: 20px;
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  min-width: 8ch;
+}
+
+.wordmark-text::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  margin-left: 2px;
+  background: currentColor;
+  vertical-align: -0.15em;
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+/* пока печатает или стирает, палочка горит ровно */
+.wordmark-text.typing::after { animation: none; }
+
+@keyframes cursor-blink { 50% { opacity: 0; } }
+
+@media (max-width: 480px) {
+  .wordmark-text { font-size: 14px; }
+}

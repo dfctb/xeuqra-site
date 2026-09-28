@@ -1,32 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. ЗАГРУЗКА РЕЛИЗОВ
-  fetch('data/releases.json')
-    .then(response => response.json())
-    .then(data => {
-      // Поддерживаем формат Sveltia CMS (объект items) или чистый массив
-      const releases = data.items || data;
-      const tbody = document.getElementById('releases-table-body');
-      tbody.innerHTML = ''; // очистка
+window.pageLoaders = window.pageLoaders || [];
 
-      releases.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="cat">${item.cat || '—'}</td>
-          <td class="artist">${item.artist || '—'}</td>
-          <td class="title">${item.title || '—'}</td>
-          <td class="year">${item.year || '—'}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    })
-    .catch(err => console.error('Ошибка загрузки релизов:', err));
+function loadArtists() {
+  const container = document.getElementById('artists-container');
+  if (!container) return Promise.resolve();
 
-  // 2. ЗАГРУЗКА АРТИСТОВ
-  fetch('data/artists.json')
-    .then(response => response.json())
+  return fetch('data/artists.json')
+    .then(r => r.json())
     .then(data => {
       const artists = data.items || data;
-      const container = document.getElementById('artists-container');
       container.innerHTML = '';
 
       artists.forEach(artist => {
@@ -46,47 +27,52 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     })
     .catch(err => console.error('Ошибка загрузки артистов:', err));
+}
 
-  // 3. ЗАГРУЗКА ДАННЫХ ЛЕЙБЛА И КОНТАКТОВ
-  fetch('data/label.json')
-    .then(response => response.json())
+function loadLabel() {
+  const description = document.getElementById('label-description');
+  if (!description) return Promise.resolve();
+
+  return fetch('data/label.json')
+    .then(r => r.json())
     .then(label => {
-      // Описание
-      document.getElementById('label-description').innerText = label.description || '';
+      description.innerText = label.description || '';
 
-      // Спецификации (Таблица ключ-значение)
-      const kv = document.getElementById('label-kv');
-      kv.innerHTML = `
+      document.getElementById('label-kv').innerHTML = `
         <div class="kv-row"><dt>founded</dt><dd>${label.founded || '—'}</dd></div>
         <div class="kv-row"><dt>founders</dt><dd>${label.founders || '—'}</dd></div>
         <div class="kv-row"><dt>sub-label</dt><dd>${label.sublabel || '—'}</dd></div>
         <div class="kv-row"><dt>roster</dt><dd>${label.roster || '—'}</dd></div>
       `;
 
-      // Контакты
       const links = document.getElementById('contact-links');
       links.innerHTML = '';
 
-      const platforms = [
-        { key: 'bandcamp', label: 'bandcamp' },
-        { key: 'soundcloud', label: 'soundcloud' },
-        { key: 'discogs', label: 'discogs' },
-        { key: 'email', label: 'email' }
-      ];
+      const notLinks = ['description', 'founded', 'founders', 'sublabel', 'roster'];
 
-      platforms.forEach(p => {
-        if (label[p.key] && label[p.key] !== '—') {
+      Object.keys(label)
+        .filter(key => !notLinks.includes(key))
+        .forEach(key => {
+          const value = label[key];
+          if (!value || value === '—') return;
+
+          const isEmail = key === 'email' || /^[^\s\/:]+@[^\s\/:]+$/.test(value);
+          const href = isEmail
+            ? `mailto:${value}`
+            : (value.startsWith('http') ? value : `https://${value}`);
+          const shown = value.replace(/^https?:\/\//, '');
+
           const li = document.createElement('li');
-          const isEmail = p.key === 'email' || label[p.key].includes('@');
-          const href = isEmail ? `mailto:${label[p.key]}` : `https://${label[p.key]}`;
-
           li.innerHTML = `
-            <span class="platform">${p.label}</span>
-            <a href="${href}" target="_blank">${label[p.key]}</a>
+            <span class="platform">${key}</span>
+            <a href="${href}" ${isEmail ? '' : 'target="_blank" rel="noopener"'}>${shown}</a>
           `;
           links.appendChild(li);
-        }
-      });
+        });
     })
     .catch(err => console.error('Ошибка загрузки данных лейбла:', err));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.pageLoaders.push(loadArtists(), loadLabel());
 });

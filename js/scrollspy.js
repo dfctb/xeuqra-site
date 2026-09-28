@@ -1,63 +1,65 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll("nav a");
-  const sections = document.querySelectorAll("section");
-  let isClicked = false; // Флаг, который блокирует скролл-баги при кликах
+document.addEventListener("DOMContentLoaded", async () => {
+  const navLinks = [...document.querySelectorAll("nav a:not(.no-scrollspy)")];
+  const sections = [...document.querySelectorAll("main section")];
+  if (!sections.length) return;
 
-  const observerOptions = {
-    root: null,
-    rootMargin: "-25% 0px -65% 0px", // Сбалансированная зона чувствительности
-    threshold: 0
-  };
+  const HEADER = 60;            // высота шапки, должна совпадать с CSS
+  const TRIGGER = HEADER + 80;  // линия, по которой определяем текущий раздел
 
-  const observerCallback = (entries) => {
-    if (isClicked) return; // Если летим по клику — не переключаем кнопки на ходу
+  let lockedByClick = false;
 
-    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 60;
-    if (isAtBottom) {
-      highlightLastLink();
+  function setActive(id) {
+    navLinks.forEach(link => {
+      link.classList.toggle("active", link.hash === "#" + id);
+    });
+  }
+
+  function atBottom() {
+    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  }
+
+  function updateActive() {
+    if (lockedByClick) return;
+
+    if (atBottom()) {
+      setActive(sections[sections.length - 1].id);
       return;
     }
 
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        if (id) {
-          navLinks.forEach((link) => link.classList.remove("active"));
-          const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-          if (activeLink) activeLink.classList.add("active");
-        }
-      }
-    });
-  };
-
-  function highlightLastLink() {
-    navLinks.forEach((link) => link.classList.remove("active"));
-    const lastLink = navLinks[navLinks.length - 1];
-    if (lastLink) lastLink.classList.add("active");
+    let current = sections[0];
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= TRIGGER) current = section;
+    }
+    setActive(current.id);
   }
 
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-  sections.forEach((section) => observer.observe(section));
-
-  window.addEventListener("scroll", () => {
-    if (isClicked) return;
-    const isAtBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 60;
-    if (isAtBottom) {
-      highlightLastLink();
-    }
-  });
-
-  // Умный перехват кликов: подсвечиваем то, на что НАЖАЛИ, и запрещаем скроллу менять это
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      isClicked = true;
-      navLinks.forEach((l) => l.classList.remove("active"));
-      link.classList.add("active");
-
-      // Включаем слежку обратно только после того, как плавная прокрутка завершится
-      setTimeout(() => {
-        isClicked = false;
-      }, 800);
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      if (link.hash && document.getElementById(link.hash.slice(1))) {
+        lockedByClick = true;
+        setActive(link.hash.slice(1));
+      }
     });
   });
+
+  // как только ты сам крутишь колесо или трогаешь экран, подсветка снова следует за страницей
+  ["wheel", "touchstart", "keydown"].forEach(ev =>
+    window.addEventListener(ev, () => { lockedByClick = false; }, { passive: true })
+  );
+
+  // ждём, пока остальные скрипты зарегистрируют загрузку данных и она закончится
+  await new Promise(r => setTimeout(r, 0));
+  await Promise.all(window.pageLoaders || []);
+
+  if (location.hash) {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target) {
+      target.scrollIntoView({ behavior: "instant", block: "start" });
+      lockedByClick = true;
+      setActive(target.id);
+    }
+  }
+
+  updateActive();
+  window.addEventListener("scroll", updateActive, { passive: true });
 });

@@ -32,7 +32,10 @@ function renderTable(data) {
     tbody.innerHTML = html;
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const data = await loadCatalog();
-    renderTable(data);
+window.pageLoaders = window.pageLoaders || [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.pageLoaders.push(
+        loadCatalog().then(renderTable).catch(console.error)
+    );
 });
