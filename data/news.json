@@ -1,22 +1,22 @@
 {
   "items": [
     {
-      "date": "2026.09.28",
+      "date": "06.10.2026",
       "title": "Website update",
-      "url": "xeuqra.com",
+      "url": "",
+      "text": "The website has been updated; the following has been added:\n\n1. The navigation system has been redesigned and expanded, with clearer separation between the main sections and additional pages.\n\n2. A new announcement section has been added to the homepage, displaying current updates and featured information.\n\n3. The announcement section now automatically displays the latest news from the website, keeping the homepage and news section synchronized.\n\n4. The homepage layout has been updated with a full-width announcement banner and support for image-based announcements.\n\n5. Various visual and navigation improvements have been made throughout the website, including improved scrolling, active navigation states, spacing, and responsive behaviour."
+    },
+    {
+      "date": "28.09.2026",
+      "title": "Website update",
+      "url": "",
       "text": "The website has been updated; the following has been added:\n1. The text ‘xeuqra.com’ has appeared next to the logo, complete with an animation\n2. A new page, ‘Others’, has been added; ===> it features a new interview with the co-founder of the Xiroach label, dated 10 September 2026."
     },
     {
-      "date": "2026.09.02",
+      "date": "02.09.2026",
       "title": "Welcome!",
       "url": "",
       "text": "We built a new minimalistic site! So, welcome!"
-    },
-    {
-      "date": "2026.09.01",
-      "title": "Demo Tape 2025–2026 out now",
-      "url": "https://qumcl.bandcamp.com/album/demo-tape-2025-2026-2",
-      "text": "62 tracks, another batch of sketches and finished bits that piled up over the year. Some could've turned into something bigger, some stayed as they are.\nFree to stream/download → https://qumcl.bandcamp.com/album/demo-tape-2025-2026-2"
     }
   ]
 }

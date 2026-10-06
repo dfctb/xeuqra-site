@@ -7,7 +7,7 @@
 <link rel="apple-touch-icon" href="/assets/pictures/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Xiroach Interview 10.09.26 — xeuqra</title>
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 <style>
 .interview-meta { margin-bottom: 2em; }
 
@@ -33,8 +33,8 @@
   grid-row: 1 / span 2;
 }
 
-.interviewer::before { background-image: url("../../assets/pictures/rick_surely.png"); }
-.xiroach::before     { background-image: url("../../assets/pictures/xiroach.jpg"); }
+.interviewer::before { background-image: url("/assets/pictures/rick_surely.png"); }
+.xiroach::before     { background-image: url("/assets/pictures/xiroach.jpg"); }
 
 /* Настройки для имен (::after) */
 .interviewer::after, .xiroach::after {
@@ -65,13 +65,21 @@
       <img src="/assets/pictures/logo.png" alt="xeuqra" class="logo">
       <span class="wordmark-text" id="typewriter" data-text="xeuqra.com" aria-hidden="true"></span>
     </a>
-    <nav>
-      <a href="../news.html">news</a>
-      <a href="../../index.html">releases</a>
-      <a href="../../index.html#artists">artists</a>
-      <a href="../../index.html#label">label</a>
-      <a href="../../index.html#contact">contact</a>
-      <a href="../others.html" class="active">others</a>
+    <nav class="site-nav">
+      <div class="nav-main">
+        <a href="/index.html">home</a>
+        <div class="nav-children">
+          <a href="/index.html#label">label</a>
+          <a href="/index.html#contact">contact</a>
+        </div>
+      </div>
+      <div class="nav-pages">
+        <a href="/pages/artists.html">artists</a>
+        <a href="/pages/releases.html">releases</a>
+        <a href="/pages/news.html">news</a>
+        <a href="/pages/others.html" class="active">others</a>
+        <a href="https://shop.xeuqra.com/">shop</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -197,7 +205,6 @@
   © xeuqra, <span id="year"></span>. all rights reserved.
 </footer>
 
-<script src="../../js/typewriter.js"></script>
-<script src="../../js/footer-year.js"></script>
-
+<script src="/js/typewriter.js"></script>
+<script src="/js/footer-year.js"></script>
 </body></html>

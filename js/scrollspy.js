@@ -1,40 +1,72 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const navLinks = [...document.querySelectorAll("nav a:not(.no-scrollspy)")];
+  const homeLink = navLinks.find(link =>
+    link.pathname === "/index.html" || link.pathname === "/"
+  );
+  const sectionLinks = navLinks.filter(link => link !== homeLink);
+
   const sections = [...document.querySelectorAll("main section")];
   if (!sections.length) return;
 
-  const HEADER = 60;            // высота шапки, должна совпадать с CSS
-  const TRIGGER = HEADER + 80;  // линия, по которой определяем текущий раздел
-
+  const HEADER = 60;
+  const TRIGGER = HEADER + 80;
   let lockedByClick = false;
 
   function setActive(id) {
-    navLinks.forEach(link => {
-      link.classList.toggle("active", link.hash === "#" + id);
-    });
+    // Сначала снимаем active вообще со всех
+    navLinks.forEach(link => link.classList.remove("active"));
+
+    if (id === "home") {
+      homeLink?.classList.add("active");
+    } else {
+      const link = sectionLinks.find(link => link.hash === "#" + id);
+      link?.classList.add("active");
+    }
   }
 
   function atBottom() {
-    return window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    return window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2;
   }
 
   function updateActive() {
     if (lockedByClick) return;
 
+    // Самый верх → HOME
+    if (window.scrollY <= 1) {
+      setActive("home");
+      return;
+    }
+
+    // Самый низ → последняя секция
     if (atBottom()) {
       setActive(sections[sections.length - 1].id);
       return;
     }
 
-    let current = sections[0];
+    let current = null;
+
     for (const section of sections) {
-      if (section.getBoundingClientRect().top <= TRIGGER) current = section;
+      if (section.getBoundingClientRect().top <= TRIGGER) {
+        current = section;
+      }
     }
-    setActive(current.id);
+
+    if (current) {
+      setActive(current.id);
+    } else {
+      setActive("home");
+    }
   }
 
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
+      if (link === homeLink) {
+        lockedByClick = true;
+        setActive("home");
+        return;
+      }
+
       if (link.hash && document.getElementById(link.hash.slice(1))) {
         lockedByClick = true;
         setActive(link.hash.slice(1));
@@ -42,24 +74,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // как только ты сам крутишь колесо или трогаешь экран, подсветка снова следует за страницей
   ["wheel", "touchstart", "keydown"].forEach(ev =>
-    window.addEventListener(ev, () => { lockedByClick = false; }, { passive: true })
+    window.addEventListener(ev, () => {
+      lockedByClick = false;
+    }, { passive: true })
   );
 
-  // ждём, пока остальные скрипты зарегистрируют загрузку данных и она закончится
   await new Promise(r => setTimeout(r, 0));
   await Promise.all(window.pageLoaders || []);
 
   if (location.hash) {
     const target = document.getElementById(location.hash.slice(1));
+
     if (target) {
-      target.scrollIntoView({ behavior: "instant", block: "start" });
+      target.scrollIntoView({
+        behavior: "instant",
+        block: "start"
+      });
+
       lockedByClick = true;
       setActive(target.id);
     }
   }
 
   updateActive();
-  window.addEventListener("scroll", updateActive, { passive: true });
+
+  window.addEventListener("scroll", updateActive, {
+    passive: true
+  });
 });

@@ -1,39 +1,10 @@
 window.pageLoaders = window.pageLoaders || [];
 
-function loadArtists() {
-  const container = document.getElementById('artists-container');
-  if (!container) return Promise.resolve();
-
-  return fetch('data/artists.json')
-    .then(r => r.json())
-    .then(data => {
-      const artists = data.items || data;
-      container.innerHTML = '';
-
-      artists.forEach(artist => {
-        const row = document.createElement('div');
-        row.className = 'artist-row';
-        row.innerHTML = `
-          <div class="artist-meta">
-            <div class="artist-name">${artist.name}</div>
-            ${artist.realName ? `<div class="artist-real">${artist.realName}</div>` : ''}
-          </div>
-          <div class="artist-content">
-            <div class="artist-note">${artist.bio || ''}</div>
-            ${artist.aliases ? `<div class="artist-aliases">also releases as: ${artist.aliases}</div>` : ''}
-          </div>
-        `;
-        container.appendChild(row);
-      });
-    })
-    .catch(err => console.error('Ошибка загрузки артистов:', err));
-}
-
-function loadLabel() {
+function loadLabelAndContact() {
   const description = document.getElementById('label-description');
   if (!description) return Promise.resolve();
 
-  return fetch('data/label.json')
+  return fetch('/data/label.json')
     .then(r => r.json())
     .then(label => {
       description.innerText = label.description || '';
@@ -49,7 +20,6 @@ function loadLabel() {
       links.innerHTML = '';
 
       const notLinks = ['description', 'founded', 'founders', 'sublabel', 'roster'];
-
       Object.keys(label)
         .filter(key => !notLinks.includes(key))
         .forEach(key => {
@@ -70,9 +40,9 @@ function loadLabel() {
           links.appendChild(li);
         });
     })
-    .catch(err => console.error('Ошибка загрузки данных лейбла:', err));
+    .catch(err => console.error('Ошибка загрузки label/contact:', err));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.pageLoaders.push(loadArtists(), loadLabel());
+  window.pageLoaders.push(loadLabelAndContact());
 });

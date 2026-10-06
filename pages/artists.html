@@ -3,12 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xeuqra Records</title>
-  <meta name="description" content="xeuqra — independent label for experimental electronic music">
-  <meta name="theme-color" content="#0a0a0a">
+  <title>artists — xeuqra</title>
   <link rel="icon" href="/favicon.ico" sizes="48x48">
-  <link rel="icon" type="image/png" href="/assets/pictures/favicon-96.png" sizes="96x96">
-  <link rel="apple-touch-icon" href="/assets/pictures/apple-touch-icon.png">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -28,7 +24,7 @@
         </div>
       </div>
       <div class="nav-pages">
-        <a href="/pages/artists.html">artists</a>
+        <a href="/pages/artists.html" class="active">artists</a>
         <a href="/pages/releases.html">releases</a>
         <a href="/pages/news.html">news</a>
         <a href="/pages/others.html">others</a>
@@ -39,29 +35,10 @@
 </header>
 
 <main>
-
-  <section id="home">
-    <div class="announcement-carousel" id="announcement-carousel">
-      <button class="announcement-arrow announcement-arrow--prev" id="announcement-prev" aria-label="previous">‹</button>
-      <div class="announcement-track" id="announcement-track"></div>
-      <button class="announcement-arrow announcement-arrow--next" id="announcement-next" aria-label="next">›</button>
-    </div>
+  <section id="artists">
+    <h1>artists <b>— roster</b></h1>
+    <div class="artists" id="artists-container"></div>
   </section>
-
-  <section id="label">
-    <h1>label</h1>
-    <div class="prose">
-      <p id="label-description"></p>
-    </div>
-    <br>
-    <dl class="kv" id="label-kv"></dl>
-  </section>
-
-  <section id="contact">
-    <h1>contact <b>— links</b></h1>
-    <ul class="links" id="contact-links"></ul>
-  </section>
-
 </main>
 
 <footer>
@@ -70,8 +47,6 @@
 
 <script src="/js/typewriter.js"></script>
 <script src="/js/footer-year.js"></script>
-<script src="/js/main-loader.js"></script>
-<script src="/js/scrollspy.js" defer></script>
-<script src="/js/announcements.js"></script>
+<script src="/js/artists-loader.js"></script>
 </body>
 </html>
