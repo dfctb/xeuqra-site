@@ -52,15 +52,7 @@ async function loadAnnouncements() {
         track.innerHTML = '';
 
         items.forEach((item, i) => {
-            const hasLink = !!item.link;
-
-            const el = document.createElement(
-                hasLink ? 'a' : 'div'
-            );
-
-            if (hasLink) {
-                el.href = item.link;
-            }
+            const el = document.createElement('div');
 
             el.className =
                 'announcement-slide' + (i === 0 ? ' active' : '');
@@ -91,9 +83,14 @@ async function loadAnnouncements() {
                     : ''
             }
 
-          ${
+            ${
                 item.type === 'news'
                     ? `<a class="announcement-news-link" href="/pages/news.html">[ Read the news ]</a>`
+                    : ''
+            }
+            ${
+                item.link
+                    ? `<a class="announcement-news-link" href="${item.link}">${item.linkText || '[ Open ]'}</a>`
                     : ''
             }
         </div>

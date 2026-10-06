@@ -6,6 +6,13 @@
       "image": "/assets/announcements/pictures/render_1.jpg",
       "video": "",
       "link": ""
+    },
+    {
+      "text": "xeuqra shop",
+      "subtext": "You can buy any of our merchandise on this website, including T-shirts featuring various designs!",
+      "image": "/assets/announcements/pictures/merch.jpg",
+      "video": "",
+      "link": "https://shop.xeuqra.com/"
     }
   ]
 }
