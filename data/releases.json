@@ -17,7 +17,7 @@
   },
   {
     "cat": "XQ0002",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Aaex",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/aaex-remastered-edition",
@@ -41,7 +41,7 @@
   },
   {
     "cat": "XQ0005",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "list of bastards, cocksuckers, cunts, fuckers",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/list-of-bastards-cocksuckers-cunts-fuckers",
@@ -89,7 +89,7 @@
   },
   {
     "cat": "XQ0011",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Lyadina and Baba Yaga",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/lyadina-and-baba-yaga",
@@ -105,7 +105,7 @@
   },
   {
     "cat": "XQ0013",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Clunky Bug",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/clunky-bug",
@@ -113,7 +113,7 @@
   },
   {
     "cat": "XQ0014",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Funny Punny",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/funny-punny",
@@ -121,7 +121,7 @@
   },
   {
     "cat": "XQ0015",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Qualopec (Compilation Unreleased Tracks)",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/qualopec-compilation-unreleased-tracks",
@@ -129,7 +129,7 @@
   },
   {
     "cat": "XQ0016",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Lost Works",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/lost-works",
@@ -137,7 +137,7 @@
   },
   {
     "cat": "XQ0017",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "H3O+OH⇌H2O+H2O",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/h3o-oh-h2o-h2o",
@@ -161,7 +161,7 @@
   },
   {
     "cat": "XQ0020",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Sample Breakdown",
     "year": "2024",
     "bandcamp": "https://qumcl.bandcamp.com/album/sample-breakdown",
@@ -241,7 +241,7 @@
   },
   {
     "cat": "XQ0030",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "Untitled: Resonant Frequency Archive ’22–’24",
     "year": "2025",
     "bandcamp": "https://qumcl.bandcamp.com/album/untitled-resonant-frequency-archive-22-24",
@@ -305,7 +305,7 @@
   },
   {
     "cat": "XQ0038",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "I Am Absolutely Sure There Are No Corpses In Our Kitchen (Remastered)",
     "year": "2025",
     "bandcamp": "https://qumcl.bandcamp.com/album/i-am-absolutely-sure-there-are-no-corpses-in-our-kitchen-remastered",
@@ -313,7 +313,7 @@
   },
   {
     "cat": "XQ0039",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "I Am Still Absolutely Sure There Are No Corpses In Our Kitchen (Remastered)",
     "year": "2025",
     "bandcamp": "https://qumcl.bandcamp.com/album/i-am-still-absolutely-sure-there-are-no-corpses-in-our-kitchen-remastered",
@@ -321,7 +321,7 @@
   },
   {
     "cat": "XQ0040",
-    "artist": "Madcap Laughs (qu1)",
+    "artist": "Madcap Laughs",
     "title": "My Schizophrenia Is Worse (Remastered)",
     "year": "2025",
     "bandcamp": "https://qumcl.bandcamp.com/album/my-schizophrenia-is-worse-remastered",
@@ -925,6 +925,14 @@
     "title": "Collected 1–5",
     "year": "2026",
     "bandcamp": "https://xardotrecords.bandcamp.com/music",
+    "match_score": 1.0
+  },
+  {
+    "cat": "XQ0116",
+    "artist": "Madcap Laughs",
+    "title": "Aaex (Remastered Edition)",
+    "year": "2025",
+    "bandcamp": "https://qumcl.bandcamp.com/album/aaex-remastered-edition",
     "match_score": 1.0
   }
 ]
