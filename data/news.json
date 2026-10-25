@@ -1,6 +1,12 @@
 {
   "items": [
     {
+      "date": "25.10.2026",
+      "title": "Website update",
+      "url": "",
+      "text": "The website has been updated; the following has been added:\n\n1. A new font has been introduced across the entire website, refreshing the overall visual identity.\n\n2. The header design has been updated and streamlined for better navigation and a more modern look.\n\n3. New sub-sections for the label have been added, providing dedicated spaces for deeper content organization.\n\n4. A featured announcement section has been launched for the upcoming album release by Xiroach.\n\n5. Various other visual adjustments, under-the-hood updates, and performance improvements have been made throughout the platform."
+    },
+    {
       "date": "06.10.2026",
       "title": "Website update",
       "url": "",
