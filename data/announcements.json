@@ -1,18 +1,46 @@
 {
   "items": [
     {
-      "text": "welcome",
-      "subtext": "xeuqra — experimental electronic label",
+      "text": "Welcome!",
+      "subtext": "Xeuqra Records is an independent label for experimental electronic music. We release records that sit somewhere between IDM, ambient and noise, with a focus on strange textures, unfinished-sounding structures and sounds that don’t ask permission. Every release comes with its own visual world.",
       "image": "/assets/announcements/pictures/render_1.jpg",
       "video": "",
       "link": ""
     },
     {
-      "text": "xeuqra shop",
-      "subtext": "You can buy any of our merchandise on this website, including T-shirts featuring various designs!",
+      "text": "Design",
+      "subtext": "Xeuqra Design is the visual studio behind the label. We make cover art, identities, merch and 90s-style CGI animations, recorded to tape and left dirty on purpose. The same hands that design the label’s world are open to work with other artists and projects.",
+      "image": "",
+      "video": "/assets/announcements/videos/0001-1200.mp4",
+      "link": ""
+    },
+    {
+      "text": "Audio, Software Instruments and VST plugins",
+      "subtext": "Xeuqra Audio builds plugins and software instruments for producers. Tools with character: sounds and interfaces designed to inspire rather than to behave. Made by people who make music, for people who make music",
+      "image": "",
+      "video": "/assets/announcements/videos/0001-1600.mp4",
+      "link": ""
+    },
+    {
+      "text": "Merchandiser",
+      "subtext": "Soon...",
       "image": "/assets/announcements/pictures/merch.jpg",
       "video": "",
-      "link": "https://shop.xeuqra.com/"
+      "link": ""
+    },
+    {
+      "text": "Xeuqra Sandbox",
+      "subtext": "Xeuqra Sandbox is where music turns into space. We build addons for Garry’s Mod: DJ setups, a cassette deck, a turntable that plays both vinyl and tape and lets you export your own music into the game, and speakers with 3D sound on the Source engine. Playable instruments, listenable rooms.",
+      "image": "/assets/announcements/pictures/xiroachfiles.jpg",
+      "video": "",
+      "link": ""
+    },
+    {
+      "text": "Contact",
+      "subtext": "Do you have any questions or would you like to get in touch with us? Please email us at: contact@xeuqra.com",
+      "image": "/assets/announcements/pictures/render_2.jpg",
+      "video": "",
+      "link": ""
     }
   ]
 }

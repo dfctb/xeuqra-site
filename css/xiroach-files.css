@@ -1,0 +1,87 @@
+/* XIROACH FILES — стили 3D-сцены и блока об альбоме.
+   Подключается после /css/style.css, переменные (--bg, --fg, --dim, --line, --mono) берутся оттуда. */
+
+:root{ --accent:#f2e600; --hdr:60px; }
+
+/* ---- 3D tour ---- */
+#tour{ position:relative; height:900vh; }          /* длина прокрутки сцены */
+#stage{
+  position:sticky; top:var(--hdr);
+  height:calc(100vh - var(--hdr));
+  height:calc(100svh - var(--hdr));
+  overflow:hidden;
+  background:#0b0b0b;
+  font-family:var(--mono);
+}
+#c{ position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:pan-y; }
+
+#bar{ position:absolute; top:0; left:0; right:0; height:3px; background:rgba(255,255,255,.15); z-index:5; }
+#bar i{ display:block; height:100%; width:0; background:var(--accent); }
+
+.cap{
+  position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
+  text-align:center; padding:0 6vw; z-index:4; pointer-events:none;
+  opacity:0; transition:opacity .6s ease;
+  text-shadow:0 0 6px #000,0 0 14px #000;
+  letter-spacing:.18em; text-transform:uppercase;
+}
+.cap.on{ opacity:1; }
+.cap b{ display:block; font-size:clamp(20px,4.2vw,54px); font-weight:700; }
+.cap span{ display:block; margin-top:.8em; font-size:clamp(11px,1.6vw,18px); opacity:.85; }
+
+#msg{
+  position:absolute; inset:0; z-index:9; display:flex; align-items:center; justify-content:center;
+  background:#0b0b0b; letter-spacing:.2em; text-transform:uppercase; font-size:14px; text-align:center; padding:24px;
+}
+#msg.hide{ display:none; }
+
+#hint{
+  position:absolute; left:0; right:0; bottom:14px; text-align:center; z-index:4;
+  font-size:22px; text-shadow:0 0 8px #000; transition:opacity .4s; pointer-events:none;
+  letter-spacing:.16em; text-transform:uppercase;
+}
+
+#back{
+  position:absolute; top:18px; right:16px; z-index:6; display:none;
+  background:rgba(0,0,0,.55); color:var(--fg); border:1px solid rgba(255,255,255,.4);
+  font:inherit; letter-spacing:.14em; text-transform:uppercase; font-size:12px; padding:9px 14px; cursor:pointer;
+}
+#back.show{ display:block; }
+
+#info{
+  position:absolute; left:0; right:0; bottom:22px; z-index:6;
+  display:none; flex-direction:column; align-items:center; gap:12px; text-align:center;
+  letter-spacing:.16em; text-transform:uppercase; text-shadow:0 0 8px #000;
+}
+#info.show{ display:flex; }
+#info .nm{ font-size:clamp(13px,2vw,20px); font-weight:700; }
+#go{
+  display:none; background:var(--accent); color:#000; text-decoration:none; font-weight:700;
+  padding:11px 20px; font-size:13px; letter-spacing:.16em;
+}
+#go.show{ display:inline-block; }
+#go:hover{ color:#000; text-decoration:none; }
+
+/* ---- album details ---- */
+#details{ padding-top:72px; }
+.album{
+  display:grid;
+  grid-template-columns:minmax(220px,340px) 1fr;
+  gap:32px;
+  align-items:start;
+}
+.album-cover{
+  position:relative; aspect-ratio:1/1;
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); color:var(--dim); font-size:13px;
+}
+.album-cover::before{ content:"cover"; }
+.album-cover img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.album-info .kv{ margin-bottom:22px; }
+.replay{ margin-top:24px; font-family:var(--mono); font-size:13px; }
+
+@media (max-width:640px){
+  .album{ grid-template-columns:1fr; }
+  #hint{ font-size:18px; }
+}

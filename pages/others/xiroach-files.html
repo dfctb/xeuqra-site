@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>XIROACH FILES — Xeuqra Records</title>
+    <meta name="description" content="XIROACH FILES — xeuqra records">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" href="/assets/pictures/favicon-96.png" sizes="96x96">
+    <link rel="apple-touch-icon" href="/assets/pictures/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/xiroach-files.css">
+    <link rel="preload" href="/assets/models/xiroach-files.glb" as="fetch" crossorigin>
+</head>
+<body>
+
+<header>
+    <div class="topbar">
+        <a href="/index.html" class="wordmark">
+            <img src="/assets/pictures/logo.png" alt="xeuqra" class="logo">
+            <span class="wordmark-text" id="typewriter" data-text="xeuqra.com" aria-hidden="true"></span>
+        </a>
+        <nav class="site-nav">
+            <div class="nav-main">
+                <a href="/index.html">home</a>
+
+                <!-- Дропдаун со всеми подразделениями -->
+                <div class="dropdown">
+                    <a href="/pages/records.html">xeuqra ▾</a>
+                    <div class="dropdown-content">
+                        <a href="/pages/records.html">records</a>
+                        <a href="/pages/design.html">design</a>
+                        <a href="/pages/audio.html">audio</a>
+                        <a href="/pages/sandbox.html">sandbox</a>
+                    </div>
+                </div>
+
+                <a href="/index.html#contact">contact</a>
+            </div>
+            <div class="nav-pages">
+                <a href="/pages/artists.html">artists</a>
+                <a href="/pages/releases.html">releases</a>
+                <a href="/pages/news.html">news</a>
+                <a href="/pages/others.html">others</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- 3D-сцена: #tour задаёт длину прокрутки, #stage прилипает под шапкой -->
+<div id="tour">
+    <div id="stage">
+        <canvas id="c"></canvas>
+        <div id="bar"><i></i></div>
+        <div id="msg">loading scene…</div>
+        <div class="cap" data-at="0.00"><b>XIROACH FILES</b><span>scroll</span></div>
+        <div class="cap" data-at="0.22"><b>FILE 01</b><span>xeuqra.com</span></div>
+        <div class="cap" data-at="0.45"><b>XIROACH LOVES</b><span>electronic listening music</span></div>
+        <div class="cap" data-at="0.68"><b>FILE 02</b><span>cd / lp</span></div>
+        <div class="cap" data-at="0.92"><b>XIROACH FILES</b><span>xeuqra.com</span></div>
+        <div id="hint">↓</div>
+        <button id="back" type="button">← back</button>
+        <div id="info">
+            <div class="nm" id="nm"></div>
+            <a id="go" target="_blank" rel="noopener noreferrer" href="#">open link ↗</a></div>
+    </div>
+</div>
+
+<!-- Подробности об альбоме: редактируйте текст здесь -->
+<main>
+    <section id="details">
+        <h1>xiroach <b>— files</b></h1>
+
+        <div class="album">
+            <div class="album-cover">
+                <!-- положите обложку в /assets/pictures/xiroach-files-cover.jpg -->
+                <img src="/assets/pictures/xiroach-files-cover.jpg" alt="XIROACH FILES cover" onerror="this.remove()">
+            </div>
+
+            <div class="album-info">
+                <dl class="kv">
+                    <div class="kv-row">
+                        <dt>artist</dt>
+                        <dd>Xiroach</dd>
+                    </div>
+                    <div class="kv-row">
+                        <dt>title</dt>
+                        <dd>XIROACH FILES (Version B)</dd>
+                    </div>
+                    <div class="kv-row">
+                        <dt>cat.</dt>
+                        <dd>XQ0118</dd>
+                    </div>
+                    <div class="kv-row">
+                        <dt>format</dt>
+                        <dd>DIGITAL RELEASE / (CD / LP)</dd>
+                    </div>
+                    <div class="kv-row">
+                        <dt>year</dt>
+                        <dd>2026</dd>
+                    </div>
+                </dl>
+
+                <div class="prose">
+                    <p>A reimagining of the original *XIROACH FILES* album, recorded in Canada at Xiroach’s secret
+                        studio.</p>
+                    <p>It was developed under conditions of military secrecy, in accordance with US and UK security
+                        classifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracklist">
+        <h1>tracklist</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>title</th>
+                <th>time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="year">01</td>
+                <td class="title">track title</td>
+                <td class="year">0:00</td>
+            </tr>
+            <tr>
+                <td class="year">02</td>
+                <td class="title">track title</td>
+                <td class="year">0:00</td>
+            </tr>
+            <tr>
+                <td class="year">03</td>
+                <td class="title">track title</td>
+                <td class="year">0:00</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="credits">
+        <h1>credits</h1>
+        <dl class="kv">
+            <div class="kv-row">
+                <dt>music</dt>
+                <dd>xiroach</dd>
+            </div>
+            <div class="kv-row">
+                <dt>mastering</dt>
+                <dd>—</dd>
+            </div>
+            <div class="kv-row">
+                <dt>artwork</dt>
+                <dd>—</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section id="get">
+        <h1>listen <b>— buy</b></h1>
+        <ul class="links">
+            <li><span class="platform">shop</span><a href="#">—</a></li>
+            <li><span class="platform">bandcamp</span><a href="#">—</a></li>
+            <li><span class="platform">spotify</span><a href="#">—</a></li>
+        </ul>
+        <p class="replay"><a href="#tour">↑ replay the scene</a></p>
+    </section>
+</main>
+
+<footer>
+    <img src="/favicon.ico" alt="Icon" class="footer-icon">
+    <span>© Xeuqra, <span id="year"></span>. all rights reserved. Website designed by Xeuqra Design.</span>
+</footer>
+
+<script src="/js/typewriter.js"></script>
+<script src="/js/footer-year.js"></script>
+<script src="/js/vendor/three.min.js"></script>
+<script src="/js/vendor/GLTFLoader.js"></script>
+<script src="/js/xiroach-files.js"></script>
+</body>
+</html>

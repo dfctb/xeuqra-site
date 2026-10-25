@@ -1,482 +1,944 @@
-@font-face{
-  font-family:"Px437 IBM VGA";
-  src:url("../assets/fonts/Px437_IBM_VGA_8x16.ttf") format("truetype");
-  font-display:swap;
+@font-face {
+    font-family: "Px437 IBM VGA";
+    src: url("../assets/fonts/Px437_IBM_VGA_8x16.ttf") format("truetype");
+    font-display: swap;
 }
 
-:root{
-  --bg:#0a0a0a;
-  --fg:#e6e6e2;
-  --dim:#8a8a86;
-  --line:#2a2a28;
-  --mono:"Px437 IBM VGA", "Courier New", monospace;
-  --sans:"Helvetica Neue", Arial, sans-serif;
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueThin.otf") format("opentype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
 }
 
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--fg);
-  font-family:var(--sans);
-  font-size:14px;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueUltraLight.otf") format("opentype");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
 }
-a{color:var(--fg); text-decoration:none;}
-a:hover{color:#fff; text-decoration:underline;}
-a:focus-visible, button:focus-visible{outline:1px solid var(--fg); outline-offset:2px;}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueLight.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueRoman.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueMedium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueBold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueHeavy.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueBlack.otf") format("opentype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* курсивы — по аналогии, с font-style: italic */
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../assets/fonts/HelveticaNeueItalic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* ...MediumItalic, BoldItalic, LightItalic, ThinItalic, HeavyItalic, UltraLightItalic, BlackItalic... */
+
+:root {
+    --bg: #0a0a0a;
+    --fg: #e6e6e2;
+    --dim: #8a8a86;
+    --line: #2a2a28;
+    --mono: "Px437 IBM VGA", "Courier New", monospace;
+    --sans: "HelveticaNeue", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--fg);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+a:focus-visible, button:focus-visible {
+    outline: 1px solid var(--fg);
+    outline-offset: 2px;
+}
 
 /* ---- top bar ---- */
-header{
-  position:sticky; top:0; z-index:10;
-  background:var(--bg);
-  border-bottom:1px solid var(--line);
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
 }
-.topbar{
-  display:flex; flex-wrap:wrap; align-items:center;
-  justify-content:space-between;
-  padding:12px 20px;
-  gap:10px 24px;
+
+.topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    gap: 10px 24px;
 }
-.wordmark{display:inline-flex; align-items:center;}
-.logo{
-  height:28px;
-  width:auto;
-  image-rendering:pixelated;
-  display:block;
+
+.wordmark {
+    display: inline-flex;
+    align-items: center;
 }
-nav{
-  display:flex; flex-wrap:wrap; gap:18px;
-  font-family:var(--mono);
-  font-size:14px;
+
+.logo {
+    height: 28px;
+    width: auto;
+    image-rendering: pixelated;
+    display: block;
 }
-nav a{color:var(--dim);}
-nav a:hover{color:var(--fg); text-decoration:none;}
-nav a.active{color:var(--fg);}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-family: var(--mono);
+    font-size: 14px;
+}
+
+nav a {
+    color: var(--dim);
+}
+
+nav a:hover {
+    color: var(--fg);
+    text-decoration: none;
+}
+
+nav a.active {
+    color: var(--fg);
+}
 
 main {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0 20px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-section{
-  padding:56px 0 24px;
-  border-bottom:1px solid var(--line);
+section {
+    padding: 56px 0 24px;
+    border-bottom: 1px solid var(--line);
 }
-section:last-of-type{border-bottom:none;}
 
-h1{
-  font-family:var(--mono);
-  font-weight:400;
-  font-size:16px;
-  color:var(--dim);
-  margin-bottom:22px;
+section:last-of-type {
+    border-bottom: none;
 }
-h1 b{color:var(--fg); font-weight:400;}
+
+h1 {
+    font-family: var(--neue-black);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--dim);
+    margin-bottom: 22px;
+}
+
+h1 b {
+    color: var(--fg);
+    font-weight: 400;
+}
 
 /* ---- intro ---- */
-.intro p{
-  max-width:640px;
-  font-size:15px;
-  color:var(--fg);
-  margin-bottom:14px;
+.intro p {
+    max-width: 640px;
+    font-size: 15px;
+    color: var(--fg);
+    margin-bottom: 14px;
 }
-.intro p:last-child{margin-bottom:0;}
-.intro .dim{color:var(--dim);}
+
+.intro p:last-child {
+    margin-bottom: 0;
+}
+
+.intro .dim {
+    color: var(--dim);
+}
 
 /* ---- data table ---- */
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-family:var(--mono);
-  font-size:13.5px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 13.5px;
 }
-th{
-  text-align:left;
-  font-weight:400;
-  color:var(--dim);
-  padding:0 12px 8px 0;
-  border-bottom:1px solid var(--line);
+
+th {
+    text-align: left;
+    font-weight: 400;
+    color: var(--dim);
+    padding: 0 12px 8px 0;
+    border-bottom: 1px solid var(--line);
 }
-td{
-  padding:9px 12px 9px 0;
-  border-bottom:1px solid var(--line);
-  vertical-align:top;
-  color:var(--fg);
+
+td {
+    padding: 9px 12px 9px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    color: var(--fg);
 }
-tr:last-child td{border-bottom:none;}
-td.cat{color:var(--dim); white-space:nowrap;}
-td.year{color:var(--dim); white-space:nowrap;}
-td.title a{color:var(--fg);}
-td.artist{white-space:nowrap;}
-.tag{
-  color:var(--dim);
-  font-size:12px;
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+td.cat {
+    color: var(--dim);
+    white-space: nowrap;
+}
+
+td.year {
+    color: var(--dim);
+    white-space: nowrap;
+}
+
+td.title a {
+    color: var(--fg);
+}
+
+td.artist {
+    white-space: nowrap;
+}
+
+.tag {
+    color: var(--dim);
+    font-size: 12px;
 }
 
 /* ---- artist list ---- */
-.artists{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:0;
+.artists {
+    display: grid;
+    grid-template-columns:1fr;
+    gap: 0;
 }
-.artist-row{
-  display:grid;
-  grid-template-columns:160px 1fr;
-  gap:20px;
-  padding:16px 0;
-  border-bottom:1px solid var(--line);
-  align-items:baseline;
+
+.artist-row {
+    display: grid;
+    grid-template-columns:160px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
 }
-.artist-row:last-child{border-bottom:none;}
-.artist-name{
-  font-family:var(--mono);
-  font-size:15px;
+
+.artist-row:last-child {
+    border-bottom: none;
 }
-.artist-real{color:var(--dim); font-size:12.5px;}
-.artist-note{color:var(--dim); font-size:13px; max-width:560px;}
-.artist-aliases{
-  font-family:var(--mono);
-  font-size:12px;
-  color:var(--dim);
-  margin-top:6px;
+
+.artist-name {
+    font-family: var(--mono);
+    font-size: 15px;
 }
-.artist-aliases a{color:var(--dim);}
-.artist-aliases a:hover{color:var(--fg);}
+
+.artist-real {
+    color: var(--dim);
+    font-size: 12.5px;
+}
+
+.artist-note {
+    color: var(--dim);
+    font-size: 13px;
+    max-width: 560px;
+}
+
+.artist-aliases {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    margin-top: 6px;
+}
+
+.artist-aliases a {
+    color: var(--dim);
+}
+
+.artist-aliases a:hover {
+    color: var(--fg);
+}
 
 /* ---- label info ---- */
-.kv{
-  display:grid;
-  grid-template-columns:140px 1fr;
-  gap:6px 20px;
-  font-family:var(--mono);
-  font-size:13.5px;
-  max-width:640px;
+.kv {
+    display: grid;
+    grid-template-columns:140px 1fr;
+    gap: 6px 20px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    max-width: 640px;
 }
-.kv dt{color:var(--dim);}
-.kv dd{color:var(--fg);}
-.kv-row{display:contents;}
 
-.prose{max-width:640px; font-size:14px; color:var(--fg);}
-.prose p{margin-bottom:14px;}
-.prose p:last-child{margin-bottom:0;}
+.kv dt {
+    color: var(--dim);
+}
+
+.kv dd {
+    color: var(--fg);
+}
+
+.kv-row {
+    display: contents;
+}
+
+.prose {
+    max-width: 640px;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.prose p {
+    margin-bottom: 14px;
+}
+
+.prose p:last-child {
+    margin-bottom: 0;
+}
 
 /* ---- news list ---- */
-.news-list{list-style:none;}
-.news-item{
-  display:grid;
-  grid-template-columns:110px 1fr;
-  gap:20px;
-  padding:16px 0;
-  border-bottom:1px solid var(--line);
-}
-.news-item:last-child{border-bottom:none;}
-.news-date{
-  font-family:var(--mono);
-  font-size:12.5px;
-  color:var(--dim);
-  white-space:nowrap;
-}
-.news-title{font-size:14.5px; margin-bottom:4px;}
-.news-title a{color:var(--fg);}
-.news-text{font-size:13px; color:var(--dim); max-width:560px; white-space: pre-line;}
-
-@media (max-width:640px){
-  .news-item{grid-template-columns:1fr;}
+.news-list {
+    list-style: none;
 }
 
-/* ---- links list ---- */
-.links{font-family:var(--mono); font-size:14px;}
-.links li{list-style:none; padding:8px 0; border-bottom:1px solid var(--line);}
-.links li:last-child{border-bottom:none;}
-.links a{color:var(--fg);}
-.links .platform{color:var(--dim); display:inline-block; width:110px;}
-
-footer{
-  padding:30px 20px 60px;
-  font-family:var(--mono);
-  font-size:12.5px;
-  color:var(--dim);
-  max-width:980px;
-  margin:0 auto;
+.news-item {
+    display: grid;
+    grid-template-columns:110px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
 }
 
-@media (max-width:640px){
-  .artist-row{grid-template-columns:1fr;}
-  .kv{grid-template-columns:1fr;}
-  table, thead, tbody, th, td, tr{display:block;}
-  thead{display:none;}
-  tr{border-bottom:1px solid var(--line); padding:10px 0;}
-  td{border-bottom:none; padding:2px 0;}
-  td.cat::before{content:"cat / "; color:var(--dim);}
-  td.year::before{content:"year / "; color:var(--dim);}
+.news-item:last-child {
+    border-bottom: none;
 }
 
-section { scroll-margin-top: 60px; }        /* чтобы шапка не закрывала заголовок */
-
-
-.wordmark-text {
-  display: inline-block;
-  margin-left: 20px;
-  font-family: var(--mono);
-  font-size: 16px;
-  letter-spacing: 0.08em;
-  min-width: 8ch;
+.news-date {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--dim);
+    white-space: nowrap;
 }
 
-.wordmark-text::after {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 1em;
-  margin-left: 2px;
-  background: currentColor;
-  vertical-align: -0.15em;
-  animation: cursor-blink 1s steps(1) infinite;
+.news-title {
+    font-size: 14.5px;
+    margin-bottom: 4px;
 }
 
-/* пока печатает или стирает, палочка горит ровно */
-.wordmark-text.typing::after { animation: none; }
-
-@keyframes cursor-blink { 50% { opacity: 0; } }
-
-@media (max-width: 480px) {
-  .wordmark-text { font-size: 14px; }
+.news-title a {
+    color: var(--fg);
 }
 
-.site-nav{
-  display:flex; flex-wrap:wrap; align-items:flex-start;
-  gap:24px;
-  font-family:var(--mono);
-  font-size:14px;
-}
-
-.nav-main{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-
-.nav-main > a{
-  color:var(--dim);
-  font-size:14px;
-  line-height:1.2;
-}
-
-.nav-main > a.active{
-  color:var(--fg);
-}
-
-.nav-children{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-  margin-left:8px;
-  padding-left:10px;
-  border-left:1px solid var(--line);
-}
-
-.nav-children a{
-  position:relative;
-  color:var(--dim);
-  font-size:12px;
-  line-height:1.4;
-  padding-left:14px;
-}
-
-.nav-children a::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:50%;
-  width:10px;
-  height:1px;
-  background:var(--line);
-  transform:translateY(-50%);
-}
-
-.nav-children a:last-child::before{
-  box-shadow:0 -6px 0 0 var(--line) inset;
-}
-
-.nav-pages{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-.nav-pages a{
-  color:var(--dim);
-}
-.nav-pages a:hover,
-.nav-pages a.active{
-  color:var(--fg);
-  text-decoration:none;
-}
-
-#contact{ min-height: calc(100vh - 60px); }
-
-#home {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: 0;
-}
-
-.announcement-carousel {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 7;
-  overflow: hidden;
-}
-
-.announcement-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.announcement-slide {
-  position: absolute;
-  inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
-.announcement-slide.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-a.announcement-slide {
-  cursor: pointer;
-}
-
-.announcement-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: 1;
-}
-
-.announcement-text {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  padding: 40px 110px;
-  box-sizing: border-box;
-
-  color: #fff;
-  overflow: hidden;
-}
-
-.announcement-title {
-  color: #fff;
-}
-
-.announcement-subtext {
-  color: rgba(255, 255, 255, 0.9);
-  white-space: pre-line;
-
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
-
-.announcement-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-
-  z-index: 3;
-
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--fg);
-
-  font-family: var(--mono);
-  font-size: 20px;
-
-  width: 36px;
-  height: 36px;
-
-  cursor: pointer;
-}
-
-.announcement-arrow:hover {
-  background: var(--fg);
-  color: var(--bg);
-}
-
-.announcement-arrow--prev {
-  left: 16px;
-}
-
-.announcement-arrow--next {
-  right: 16px;
+.news-text {
+    font-size: 13px;
+    color: var(--dim);
+    max-width: 560px;
+    white-space: pre-line;
 }
 
 @media (max-width: 640px) {
-  .announcement-title {
-    font-size: 18px;
-  }
+    .news-item {
+        grid-template-columns:1fr;
+    }
+}
 
-  .announcement-text {
-    padding: 30px 70px;
-  }
+/* ---- links list ---- */
+.links {
+    font-family: var(--mono);
+    font-size: 14px;
+}
 
-  .announcement-carousel {
-    aspect-ratio: 16 / 9;
-  }
+.links li {
+    list-style: none;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.links li:last-child {
+    border-bottom: none;
+}
+
+.links a {
+    color: var(--fg);
+}
+
+.links .platform {
+    color: var(--dim);
+    display: inline-block;
+    width: 110px;
+}
+
+footer {
+    /* Ваши старые стили (остаются без изменений) */
+    padding: 30px 20px 60px;
+    color: var(--dim);
+    max-width: 980px;
+    margin: 0 auto;
+
+    /* Новые стили для выравнивания */
+    display: flex;
+    align-items: center; /* Центрирует иконку и текст по вертикали */
+    justify-content: flex-start; /* Прижимает всё к левому краю */
+    gap: 12px; /* Отступ между иконкой и текстом */
+    flex-wrap: wrap; /* Если текст длинный, он перенесется на новую строку */
+}
+
+/* Стиль для иконки */
+.footer-icon {
+    height: 1.2em; /* Размер иконки зависит от размера шрифта (12.5px * 1.2 ≈ 15px) */
+    width: auto;
+    image-rendering: pixelated;
+    display: inline-block; /* Важно, чтобы иконка не ломала flex-контейнер */
+    vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+    .artist-row {
+        grid-template-columns:1fr;
+    }
+
+    .kv {
+        grid-template-columns:1fr;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        border-bottom: 1px solid var(--line);
+        padding: 10px 0;
+    }
+
+    td {
+        border-bottom: none;
+        padding: 2px 0;
+    }
+
+    td.cat::before {
+        content: "cat / ";
+        color: var(--dim);
+    }
+
+    td.year::before {
+        content: "year / ";
+        color: var(--dim);
+    }
+}
+
+section {
+    scroll-margin-top: 60px;
+}
+
+/* чтобы шапка не закрывала заголовок */
+
+
+.wordmark-text {
+    display: inline-block;
+    margin-left: 20px;
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    min-width: 8ch;
+}
+
+.wordmark-text::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 1em;
+    margin-left: 2px;
+    background: currentColor;
+    vertical-align: -0.15em;
+    animation: cursor-blink 1s steps(1) infinite;
+}
+
+/* пока печатает или стирает, палочка горит ровно */
+.wordmark-text.typing::after {
+    animation: none;
+}
+
+@keyframes cursor-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .wordmark-text {
+        font-size: 14px;
+    }
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 24px;
+    font-family: var(--mono);
+    font-size: 14px;
+}
+
+.nav-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nav-main > a {
+    color: var(--dim);
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.nav-main > a.active {
+    color: var(--fg);
+}
+
+.nav-children {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: 8px;
+    padding-left: 10px;
+    border-left: 1px solid var(--line);
+}
+
+.nav-children a {
+    position: relative;
+    color: var(--dim);
+    font-size: 12px;
+    line-height: 1.4;
+    padding-left: 14px;
+}
+
+.nav-children a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 1px;
+    background: var(--line);
+    transform: translateY(-50%);
+}
+
+.nav-children a:last-child::before {
+    box-shadow: 0 -6px 0 0 var(--line) inset;
+}
+
+.nav-pages {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.nav-pages a {
+    color: var(--dim);
+}
+
+.nav-pages a:hover,
+.nav-pages a.active {
+    color: var(--fg);
+    text-decoration: none;
+}
+
+#contact {
+    min-height: auto; /* Убираем принудительную высоту */
+    padding: 80px 0; /* Делаем отступ 80px сверху и снизу */
+}
+
+#home {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 0;
+}
+
+.announcement-carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+}
+
+.announcement-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.announcement-slide {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.announcement-slide--lowres {
+    background-color: #000; /* чёрные поля вокруг */
+}
+
+.announcement-slide--lowres .announcement-overlay {
+    /* оверлей поверх только видео-зоны — сложнее, проще оставить как есть */
+}
+
+.announcement-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+a.announcement-slide {
+    cursor: pointer;
+}
+
+.announcement-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.40);
+    z-index: 1;
+}
+
+.announcement-text {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 10%; /* отступы в процентах вместо жестких пикселей */
+    box-sizing: border-box;
+    color: #fff;
+    overflow: hidden;
+}
+
+.announcement-title {
+    color: #fff;
+}
+
+.announcement-subtext {
+    color: rgba(255, 255, 255, 0.9);
+    white-space: pre-line;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.announcement-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 3;
+
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--fg);
+
+    font-family: var(--mono);
+    font-size: 20px;
+
+    width: 36px;
+    height: 36px;
+
+    cursor: pointer;
+}
+
+.announcement-arrow:hover {
+    background: var(--fg);
+    color: var(--bg);
+}
+
+.announcement-arrow--prev {
+    left: 16px;
+}
+
+.announcement-arrow--next {
+    right: 16px;
+}
+
+@media (max-width: 640px) {
+    .announcement-title {
+        font-size: 18px;
+    }
+
+    .announcement-text {
+        padding: 30px 70px;
+    }
+
+    .announcement-carousel {
+        aspect-ratio: 16 / 9;
+    }
 }
 
 .announcement-news-link {
-  display: inline-block;
-  margin-top: 18px;
+    display: inline-block;
+    margin-top: 18px;
 
-  width: fit-content;
+    width: fit-content;
 
-  font-family: var(--mono);
-  font-size: 13px;
+    font-family: var(--neue-medium);
+    font-weight: 500;
 
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 6px 10px;
 }
 
 .announcement-news-link:hover {
-  background: #fff;
-  color: #0a0a0a;
-  text-decoration: none;
+    background: #fff;
+    color: #0a0a0a;
+    text-decoration: none;
 }
 
 .announcement-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
+.announcement-video--lowres {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    height: 100%; /* тянем до верхнего и нижнего края */
+    width: auto;
+    max-width: 100%; /* ограничитель для мобилок */
+    transform: translate(-50%, -50%);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
 
+@media (max-width: 640px) {
+    .announcement-title {
+        font-size: 18px;
+    }
+}
 
-@media (max-width:640px){ .announcement-title{ font-size:18px; } }
+/* Контейнер для карточек */
+.others-list {
+    display: flex;
+    flex-direction: column; /* Выстраиваем карточки в столбик */
+    gap: 28px; /* ОТСТУП МЕЖДУ КАРТОЧКАМИ (меняйте по вкусу) */
+    align-items: flex-start; /* Чтобы карточки не растягивались на всю ширину, если не нужно */
+}
+
+/* Стили для самой карточки */
+.others-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none; /* Убираем стандартное подчеркивание ссылки */
+    color: inherit; /* Наследуем цвет текста */
+    width: 100%; /* Или max-width: 600px, если нужно сузить */
+}
+
+/* Убираем стандартное подчеркивание у заголовков внутри ссылок */
+.others-card:hover h2,
+.others-card:hover p {
+    text-decoration: none;
+}
+
+/* Стили для текста внутри карточки */
+.card-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    margin-bottom: 4px;
+}
+
+.card-title {
+    font-family: var(--sans); /* Или var(--mono), если хотите моноширинный */
+    font-size: 20px;
+    color: var(--fg);
+    margin-bottom: 4px;
+}
+
+.card-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--dim);
+}
+
+/* Сетка для секции label */
+.label-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Текст занимает всё свободное место, логотип — 300px */
+    gap: 40px; /* Расстояние между текстом и логотипом */
+    align-items: start; /* Прижимает логотип к верхнему краю текста */
+}
+
+/* Ограничиваем ширину текста, чтобы он не растягивался слишком сильно */
+.label-text {
+    max-width: 640px;
+}
+
+/* Стили для контейнера с логотипом */
+.label-logo {
+    display: flex;
+    justify-content: flex-end; /* Прижимает логотип к правому краю */
+    align-items: flex-start;
+}
+
+/* Стили для самой картинки */
+.label-logo img {
+    width: 100%;
+    max-width: 280px; /* Максимальный размер логотипа */
+    height: auto;
+    display: block;
+    image-rendering: pixelated; /* Если логотип пиксельный, чтобы не мылился */
+}
+
+/* Адаптив для мобилок: на узких экранах складываем в одну колонку */
+@media (max-width: 768px) {
+    .label-layout {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 30px;
+    }
+
+    .label-logo {
+        justify-content: flex-start; /* На мобилке логотип будет слева под текстом */
+    }
+}
+
+/* Контейнер для выпадающего меню */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Скрываем выпадающий список по умолчанию */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--bg);
+    min-width: 140px;
+    border: 1px solid var(--line);
+    z-index: 100;
+    padding: 5px 0;
+    top: 100%; /* Появляется ровно под ссылкой */
+    left: 0;
+}
+
+/* Стили для ссылок внутри выпадающего меню */
+.dropdown-content a {
+    color: var(--dim);
+    padding: 6px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+
+.dropdown-content a:hover {
+    color: var(--fg);
+    background-color: #111; /* Легкая подсветка при наведении */
+}
+
+/* Показываем меню при наведении на родителя */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.bottom-banner {
+    /* Магия для растягивания на всю ширину экрана (как у #home) */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+
+    /* Задаем точно такие же пропорции, как у верхнего баннера */
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+
+    /* Отступ от контента сверху */
+    margin-top: 60px;
+}
+
+.bottom-banner img {
+    /* Картинка заполняет весь блок, обрезая лишнее (как background-size: cover) */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Адаптив под мобилки (чтобы пропорции совпадали с верхней каруселью) */
+@media (max-width: 640px) {
+    .bottom-banner {
+        aspect-ratio: 16 / 9;
+    }
+}

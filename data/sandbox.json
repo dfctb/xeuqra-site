@@ -1,0 +1,16 @@
+{
+  "description": "Xeuqra Sandbox/Labs is where music turns into space. We build addons for Garry’s Mod: DJ setups, a cassette deck, a turntable that plays both vinyl and tape and lets you export your own music into the game, and speakers with 3D sound on the Source engine. Playable instruments, listenable rooms.",
+  "projects": [
+    "Garry's Mod DJ setups",
+    "Cassette deck",
+    "Turntable (vinyl & tape)",
+    "Music export functionality",
+    "3D sound speakers"
+  ],
+  "engine": "Source Engine, Self-Writing Engine",
+  "status": "Active",
+  "steam_workshop": "",
+  "github": "https://github.com/Xeuqra",
+  "email": "contact@xeuqra.com",
+  "owner": "Founded by Xiroach"
+}

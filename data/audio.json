@@ -1,0 +1,12 @@
+{
+  "description": "xeuqra audio builds plugins and software instruments for producers. Tools with character: sounds and interfaces designed to inspire rather than to behave. Made by people who make music, for people who make music.",
+  "products": [
+    "VST plugins",
+    "Software instruments"
+  ],
+  "philosophy": "Tools with character. Designed to inspire rather than to behave.",
+  "status": "In development",
+  "email": "contact@xeuqra.com",
+  "gumroad": "",
+  "github": ""
+}
