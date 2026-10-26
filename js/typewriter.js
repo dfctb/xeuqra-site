@@ -4,10 +4,6 @@
   const text = el.dataset.text || "XEUQRA";
 
 
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    el.textContent = text;
-    return;
-  }
   const whenVisible = () => document.hidden ? new Promise(resolve => {
     function resume() {
       if (!document.hidden) { document.removeEventListener('visibilitychange', resume); resolve(); }
