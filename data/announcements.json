@@ -3,44 +3,50 @@
     {
       "text": "Welcome!",
       "subtext": "Xeuqra Records is an independent label for experimental electronic music. We release records that sit somewhere between IDM, ambient and noise, with a focus on strange textures, unfinished-sounding structures and sounds that don’t ask permission. Every release comes with its own visual world.",
-      "image": "/assets/announcements/pictures/render_1.jpg",
+      "image": "/assets/announcements/pictures/render_1.jpg?v=d710cadb60ab",
       "video": "",
-      "link": ""
+      "link": "",
+      "imageSrcset": "/assets/announcements/pictures/render_1-640.webp?v=1d1e1210e48e 640w, /assets/announcements/pictures/render_1-1280.webp?v=2adf911f4a14 1280w, /assets/announcements/pictures/render_1-1920.webp?v=37f09142cf00 1920w"
     },
     {
       "text": "Design",
       "subtext": "Xeuqra Design is the visual studio behind the label. We make cover art, identities, merch and 90s-style CGI animations, recorded to tape and left dirty on purpose. The same hands that design the label’s world are open to work with other artists and projects.",
       "image": "",
-      "video": "/assets/announcements/videos/0001-1200.mp4",
-      "link": ""
+      "video": "/assets/announcements/videos/0001-1200.mp4?v=4ec44c5a922f",
+      "link": "",
+      "poster": "/assets/announcements/pictures/0001-1200-poster.jpg?v=f1187973135d"
     },
     {
       "text": "Audio, Software Instruments and VST plugins",
       "subtext": "Xeuqra Audio builds plugins and software instruments for producers. Tools with character: sounds and interfaces designed to inspire rather than to behave. Made by people who make music, for people who make music",
       "image": "",
-      "video": "/assets/announcements/videos/0001-1600.mp4",
-      "link": ""
+      "video": "/assets/announcements/videos/0001-1600.mp4?v=d6af8edce5b7",
+      "link": "",
+      "poster": "/assets/announcements/pictures/0001-1600-poster.jpg?v=dd61db0fb4f7"
     },
     {
       "text": "Merchandiser",
       "subtext": "Soon...",
-      "image": "/assets/announcements/pictures/merch.jpg",
+      "image": "/assets/announcements/pictures/merch.jpg?v=738294217f5c",
       "video": "",
-      "link": ""
+      "link": "",
+      "imageSrcset": "/assets/announcements/pictures/merch-640.webp?v=e554d83e8b88 640w, /assets/announcements/pictures/merch-1280.webp?v=e7e8e1292455 1280w, /assets/announcements/pictures/merch-1920.webp?v=2f361056cbdb 1920w"
     },
     {
       "text": "Xeuqra Sandbox",
       "subtext": "Xeuqra Sandbox is where music turns into space. We build addons for Garry’s Mod: DJ setups, a cassette deck, a turntable that plays both vinyl and tape and lets you export your own music into the game, and speakers with 3D sound on the Source engine. Playable instruments, listenable rooms.",
-      "image": "/assets/announcements/pictures/xiroachfiles.jpg",
+      "image": "/assets/announcements/pictures/xiroachfiles.jpg?v=0c83cc9ca71f",
       "video": "",
-      "link": ""
+      "link": "",
+      "imageSrcset": "/assets/announcements/pictures/xiroachfiles-640.webp?v=f4f4c06efac4 640w, /assets/announcements/pictures/xiroachfiles-1280.webp?v=6279a8362875 1280w, /assets/announcements/pictures/xiroachfiles-1920.webp?v=5cc30a8235a0 1920w"
     },
     {
       "text": "Contact",
       "subtext": "Do you have any questions or would you like to get in touch with us? Please email us at: contact@xeuqra.com",
-      "image": "/assets/announcements/pictures/render_2.jpg",
+      "image": "/assets/announcements/pictures/render_2.jpg?v=08a24bfad3c6",
       "video": "",
-      "link": ""
+      "link": "",
+      "imageSrcset": "/assets/announcements/pictures/render_2-640.webp?v=563534e978fa 640w, /assets/announcements/pictures/render_2-1280.webp?v=5a6263b5342a 1280w"
     }
   ]
 }

@@ -1,12 +1,12 @@
 @font-face {
     font-family: "Px437 IBM VGA";
-    src: url("../assets/fonts/Px437_IBM_VGA_8x16.ttf") format("truetype");
+    src: url("../assets/fonts/Px437_IBM_VGA_8x16.woff2?v=d6e894a2d1fe") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueThin.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueThin.woff2?v=7540d9d35235") format("woff2");
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueUltraLight.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueUltraLight.woff2?v=e0fc42482d87") format("woff2");
     font-weight: 200;
     font-style: normal;
     font-display: swap;
@@ -22,7 +22,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueLight.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueLight.woff2?v=79df863440da") format("woff2");
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -30,7 +30,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueRoman.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueRoman.woff2?v=51b10b7337e1") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -38,7 +38,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueMedium.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueMedium.woff2?v=b924ed73f7bc") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -46,7 +46,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueBold.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueBold.woff2?v=405ca24cf998") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -54,7 +54,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueHeavy.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueHeavy.woff2?v=02354aedaf8d") format("woff2");
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -62,7 +62,7 @@
 
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueBlack.otf") format("opentype");
+    src: url("../assets/fonts/HelveticaNeueBlack.woff2?v=bec2b06b2629") format("woff2");
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -71,7 +71,7 @@
 /* курсивы — по аналогии, с font-style: italic */
 @font-face {
     font-family: "HelveticaNeue";
-    src: url("../assets/fonts/HelveticaNeueItalic.ttf") format("truetype");
+    src: url("../assets/fonts/HelveticaNeueItalic.woff2?v=1c1907f5319d") format("woff2");
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -911,7 +911,8 @@ a.announcement-slide {
 }
 
 /* Показываем меню при наведении на родителя */
-.dropdown:hover .dropdown-content {
+.dropdown:focus-within .dropdown-content,
+.dropdown.is-open .dropdown-content {
     display: block;
 }
 
@@ -941,4 +942,18 @@ a.announcement-slide {
     .bottom-banner {
         aspect-ratio: 16 / 9;
     }
+}
+/* Same image crop as the previous slide backgrounds. */
+.announcement-image {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
+}
+@media (hover: hover) {
+    .dropdown:hover .dropdown-content { display: block; }
+}
+.dropdown.is-closed .dropdown-content { display: none; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .announcement-slide { transition: none; }
+    .wordmark-text::after { animation: none; }
 }

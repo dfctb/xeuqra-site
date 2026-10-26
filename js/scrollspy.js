@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const TRIGGER = HEADER + 80;
   let lockedByClick = false;
 
+  let activeId = null;
   function setActive(id) {
+    if (activeId === id) return;
+    activeId = id;
     // Сначала снимаем active вообще со всех
     navLinks.forEach(link => link.classList.remove("active"));
 
@@ -99,7 +102,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   updateActive();
 
-  window.addEventListener("scroll", updateActive, {
+  let scrollPending = false;
+  window.addEventListener("scroll", () => {
+    if (scrollPending) return;
+    scrollPending = true;
+    requestAnimationFrame(() => { scrollPending = false; updateActive(); });
+  }, {
     passive: true
   });
 });

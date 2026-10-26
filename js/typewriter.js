@@ -4,6 +4,17 @@
   const text = el.dataset.text || "XEUQRA";
 
 
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = text;
+    return;
+  }
+  const whenVisible = () => document.hidden ? new Promise(resolve => {
+    function resume() {
+      if (!document.hidden) { document.removeEventListener('visibilitychange', resume); resolve(); }
+    }
+    document.addEventListener('visibilitychange', resume);
+  }) : Promise.resolve();
+
   const TYPE_MS = 110;     // скорость набора одной буквы
   const ERASE_MS = 70;     // скорость стирания
   const HOLD_FULL = 2500;  // сколько держится готовое слово
@@ -15,6 +26,7 @@
     while (true) {
       el.classList.add("typing");
       for (let i = 1; i <= text.length; i++) {
+        await whenVisible();
         el.textContent = text.slice(0, i);
         await wait(TYPE_MS + Math.random() * 70); // лёгкая неровность, как у живой печати
       }
@@ -23,6 +35,7 @@
 
       el.classList.add("typing");
       for (let i = text.length - 1; i >= 0; i--) {
+        await whenVisible();
         el.textContent = text.slice(0, i);
         await wait(ERASE_MS);
       }

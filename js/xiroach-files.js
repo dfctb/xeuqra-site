@@ -6,7 +6,7 @@
   /* ============================================================
      НАСТРОЙКИ
      ============================================================ */
-  var MODEL_URL   = '/assets/models/xiroach-files.glb';
+  var MODEL_URL   = '/assets/models/xiroach-files.glb?v=6b0eaf033190';
   var SHADOW_SIZE = 2048;   /* качество теней: 1024 / 2048 / 4096 (тени считаются один раз) */
   var MAX_DPR     = 2;      /* потолок плотности пикселей на десктопе; на телефонах 1.5 */
 
@@ -144,6 +144,10 @@
   var ROOM_CENTER = new THREE.Vector3(2.5, 4.5, 4.3);
   var MINB = new THREE.Vector3(-8, 0.7, -8.6), MAXB = new THREE.Vector3(13.3, 10, 17);
 
+  var frameRequest = 0;
+  function requestRender() {
+    if (!frameRequest) frameRequest = requestAnimationFrame(frame);
+  }
   var target = 0, cur = 0, mx = 0, my = 0;
   var ready = false, world = null, visible = true, needsRender = true;
   var focus = null, focusScroll = 0;
@@ -161,10 +165,12 @@
     var top = tour.getBoundingClientRect().top;
     target = range > 0 ? clamp01((header.offsetHeight - top) / range) : 0;
     if (focus && Math.abs(window.scrollY - focusScroll) > 4) clearFocus();
+    requestRender();
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('mousemove', function (e) {
     mx = e.clientX / window.innerWidth - 0.5; my = e.clientY / window.innerHeight - 0.5;
+    requestRender();
   }, { passive: true });
 
   function resize() {
@@ -175,7 +181,7 @@
     camera.aspect = w / h;
     camera.fov = w / h < 0.9 ? 78 : 60;
     camera.updateProjectionMatrix();
-    needsRender = true;
+    needsRender = true; requestRender();
     onScroll();
   }
   if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
@@ -186,7 +192,7 @@
   if (window.IntersectionObserver) {
     new IntersectionObserver(function (en) {
       visible = en[0].isIntersecting;
-      if (visible) needsRender = true;
+      if (visible) { needsRender = true; requestRender(); }
     }).observe(stage);
   }
 
@@ -264,14 +270,14 @@
     if (debug) label += '  [' + nm + ']';
     focus = { pos: best, look: c };
     focusScroll = window.scrollY;
-    needsRender = true;
+    needsRender = true; requestRender();
     backBtn.classList.add('show');
     nmEl.textContent = label; info.classList.add('show');
     if (url) { goEl.href = url; goEl.classList.add('show'); }
     else { goEl.classList.remove('show'); goEl.removeAttribute('href'); }
   }
   function clearFocus() {
-    focus = null; needsRender = true;
+    focus = null; needsRender = true; requestRender();
     backBtn.classList.remove('show'); info.classList.remove('show'); goEl.classList.remove('show');
   }
   backBtn.addEventListener('click', clearFocus);
@@ -301,8 +307,8 @@
      ЦИКЛ: рисуем только если камера реально сдвинулась
      ============================================================ */
   function frame() {
-    requestAnimationFrame(frame);
-    if (!ready || !visible) return;
+    frameRequest = 0;
+    if (!ready || !visible || document.hidden) return;
 
     cur += (target - cur) * 0.07;
     var wantP, wantL;
@@ -333,6 +339,7 @@
     for (var q = 0; q < caps.length; q++) caps[q].classList.toggle('on', !focus && q === best && bd < 0.09);
 
     renderer.render(scene, camera);
+    requestRender(); // Continue only while the camera is settling.
   }
 
   /* ============================================================
@@ -360,7 +367,7 @@
       meshBoxes.push({ mesh: o, box: new THREE.Box3().setFromObject(o) });
     });
     renderer.shadowMap.needsUpdate = true;   /* единственный просчёт теней */
-    ready = true; needsRender = true;
+    ready = true; needsRender = true; requestRender();
     msg.classList.add('hide');
     onScroll();
   }, function (e) {
@@ -369,5 +376,8 @@
     console.error(err); fail('could not read the 3D scene');
   });
 
-  frame();
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) { needsRender = true; requestRender(); }
+  });
+  requestRender();
 })();

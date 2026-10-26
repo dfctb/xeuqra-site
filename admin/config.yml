@@ -20,7 +20,7 @@ collections:
             widget: "list"
             summary: "{{fields.date}} — {{fields.title}}"
             fields:
-              - {label: "Date", name: "date", widget: "string", hint: "format YYYY.MM.DD"}
+              - {label: "Date", name: "date", widget: "string", hint: "format DD.MM.YYYY"}
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Link (optional)", name: "url", widget: "string", required: false}
               - {label: "Text", name: "text", widget: "text", required: false}
@@ -42,6 +42,8 @@ collections:
               - {label: "Artist", name: "artist", widget: "string"}
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Year", name: "year", widget: "string"}
+              - {label: "Bandcamp URL", name: "bandcamp", widget: "string", required: false}
+              - {label: "Match score", name: "match_score", widget: "number", value_type: "float", required: false}
 
       # Артисты
       - file: "data/artists.json"

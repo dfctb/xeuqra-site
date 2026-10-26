@@ -1,4 +1,5 @@
-[
+{
+  "items": [
   {
     "cat": "XQ0000",
     "artist": "Qulicker, Xiroach",
@@ -944,3 +945,4 @@
     "match_score": 1.0
   }
 ]
+}

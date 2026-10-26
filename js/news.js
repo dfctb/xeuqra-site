@@ -3,20 +3,13 @@ async function loadNews() {
     if (!list) return;
 
     try {
-        const res = await fetch("../data/news.json");
+        const res = await fetch("/data/news.json");
         if (!res.ok) throw new Error("failed to load news.json");
         const data = await res.json();
         const items = data.items || [];
 
-        // newest first
-        items.sort((a, b) => {
-            const parseDate = (date) => {
-                const [day, month, year] = date.split(".");
-                return new Date(year, month - 1, day);
-            };
-
-            return parseDate(b.date) - parseDate(a.date);
-        });
+        const { parseDate, escapeHTML, safeURL } = window.xeuqra;
+        items.sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
         list.innerHTML = "";
 
@@ -24,15 +17,15 @@ async function loadNews() {
             const li = document.createElement("li");
             li.className = "news-item";
 
-            const titleHtml = item.url
-                ? `<a href="${item.url}">${item.title}</a>`
-                : item.title;
+            const titleHtml = safeURL(item.url)
+                ? `<a href="${escapeHTML(safeURL(item.url))}">${escapeHTML(item.title)}</a>`
+                : escapeHTML(item.title);
 
             li.innerHTML = `
-        <div class="news-date">${item.date}</div>
+        <div class="news-date">${escapeHTML(item.date)}</div>
         <div class="news-body">
           <div class="news-title">${titleHtml}</div>
-          <div class="news-text">${item.text || ""}</div>
+          <div class="news-text">${escapeHTML(item.text || '')}</div>
         </div>
       `;
 

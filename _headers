@@ -1,0 +1,26 @@
+# HTML and JSON retain Cloudflare's default revalidation policy.
+# References to the files below include content-based ?v= hashes.
+# Run python3 tools/version_assets.py after changing code, fonts or media.
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/pictures/*
+  Cache-Control: public, max-age=86400
+
+/assets/announcements/*
+  Cache-Control: public, max-age=86400
+
+/assets/models/*
+  Cache-Control: public, max-age=86400
+
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate

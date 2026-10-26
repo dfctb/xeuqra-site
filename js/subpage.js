@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Получаем имя файла из URL (например, "design" из "/pages/design.html")
   const path = window.location.pathname
   const pageName = path.substring(path.lastIndexOf('/') + 1).
-    replace('.html', '')
+    replace(/\.html$/, '')
 
   // Если это не наши подстраницы, ничего не делаем
   if (!['records', 'design', 'audio', 'sandbox'].includes(pageName)) return
@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         a.href = value
         a.textContent = value.replace('https://', '').replace('http://', '')
         a.target = '_blank'
+        a.rel = 'noopener noreferrer'
         dd.appendChild(a)
       } else {
         dd.textContent = value
